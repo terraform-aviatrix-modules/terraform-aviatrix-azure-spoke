@@ -16,7 +16,7 @@ module "spoke_azure_1" {
   spoke_name = "my_first_spoke"
   cidr = "10.1.0.0/20"
   region = "Japan East"
-  aws_account_name = "Azure"
+  azure_account_name = "Azure"
   transit_gw = "tg-japan-east"
 }
 ```
