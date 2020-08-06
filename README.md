@@ -16,7 +16,7 @@ module "spoke_azure_1" {
   spoke_name = "my_first_spoke"
   cidr = "10.1.0.0/20"
   region = "Japan East"
-  aws_account_name = "Azure"
+  azure_account_name = "Azure"
   transit_gw = "tg-japan-east"
 }
 ```
@@ -36,7 +36,7 @@ The following variables are optional:
 
 key | default | value 
 :---|:---|:---
-instance_size | Standard_B1s | The size of the Aviatrix spoke gateways
+instance_size | Standard_B1ms | The size of the Aviatrix spoke gateways
 ha_gw | true | Set to false if you only want to deploy a single Aviatrix spoke gateway
 
 ### Outputs
