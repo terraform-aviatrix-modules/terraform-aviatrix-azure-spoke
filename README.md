@@ -16,7 +16,7 @@ module "spoke_azure_1" {
   spoke_name = "my_first_spoke"
   cidr = "10.1.0.0/20"
   region = "Japan East"
-  azure_account_name = "Azure"
+  acount = "Azure"
   transit_gw = "tg-japan-east"
 }
 ```
@@ -29,7 +29,7 @@ key | value
 spoke_name | Name for this spoke VNET and it's gateways
 region | AWS region to deploy this VNET in
 cidr | What ip CIDR to use for this VNET
-azure_account_name | The account name as known by the Aviatrix controller
+account | The account name as known by the Aviatrix controller
 transit_gw | The name of the transit gateway we want to attach this spoke to
 
 The following variables are optional:
