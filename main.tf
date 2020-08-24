@@ -3,7 +3,7 @@ resource "aviatrix_vpc" "default" {
   cloud_type           = 8
   account_name         = var.account
   region               = var.region
-  name                 = var.spoke_name
+  name                 = length(var.name) > 0 ? "avx-${var.name}-spoke" : "avx-${var.region}-spoke"
   cidr                 = var.cidr
   aviatrix_firenet_vpc = false
 }
@@ -12,7 +12,7 @@ resource "aviatrix_spoke_gateway" "single" {
   count              = var.ha_gw ? 0 : 1
   cloud_type         = 8
   account_name       = var.account
-  gw_name            = var.spoke_name
+  gw_name            = length(var.name) > 0 ? "avx-${var.name}-spoke" : "avx-${var.region}-spoke"
   vpc_id             = aviatrix_vpc.default.vpc_id
   vpc_reg            = var.region
   gw_size            = var.instance_size
@@ -25,7 +25,7 @@ resource "aviatrix_spoke_gateway" "ha" {
   count              = var.ha_gw ? 1 : 0
   cloud_type         = 8
   account_name       = var.account
-  gw_name            = var.spoke_name
+  gw_name            = length(var.name) > 0 ? "avx-${var.name}-spoke" : "avx-${var.region}-spoke"
   vpc_id             = aviatrix_vpc.default.vpc_id
   vpc_reg            = var.region
   gw_size            = var.instance_size
