@@ -10,7 +10,7 @@ variable "cidr" {
   type = string
 }
 
-variable "azure_account_name" {
+variable "account" {
   type = string
 }
 
