@@ -1,5 +1,6 @@
-variable "spoke_name" {
-  type = string
+variable "name" {
+  type    = string
+  default = ""
 }
 
 variable "region" {
