@@ -13,7 +13,7 @@ module "spoke_azure_1" {
   source  = "terraform-aviatrix-modules/azure-spoke/aviatrix"
   version = "1.0.0"
 
-  spoke_name = "my_first_spoke"
+  name = "my_first_spoke"
   cidr = "10.1.0.0/20"
   region = "Japan East"
   acount = "Azure"
