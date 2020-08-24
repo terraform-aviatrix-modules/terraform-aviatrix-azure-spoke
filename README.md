@@ -35,7 +35,7 @@ The following variables are optional:
 
 key | default | value 
 :---|:---|:---
-name | avx-<region>-spoke | Custom name for VNET and Gateway resources. Result will be avx-<name>-spoke.
+name | avx-\<region\>-spoke | Custom name for VNET and Gateway resources. Result will be avx-\<name\>-spoke.
 instance_size | Standard_B1ms | The size of the Aviatrix spoke gateways
 ha_gw | true | Set to false if you only want to deploy a single Aviatrix spoke gateway
 
