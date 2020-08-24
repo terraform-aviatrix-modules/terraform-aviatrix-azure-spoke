@@ -26,7 +26,6 @@ The following variables are required:
 
 key | value
 :--- | :---
-spoke_name | Name for this spoke VNET and it's gateways
 region | AWS region to deploy this VNET in
 cidr | What ip CIDR to use for this VNET
 account | The account name as known by the Aviatrix controller
@@ -36,6 +35,7 @@ The following variables are optional:
 
 key | default | value 
 :---|:---|:---
+name | avx-<region>-spoke | Custom name for VNET and Gateway resources. Result will be avx-<name>-spoke.
 instance_size | Standard_B1ms | The size of the Aviatrix spoke gateways
 ha_gw | true | Set to false if you only want to deploy a single Aviatrix spoke gateway
 
