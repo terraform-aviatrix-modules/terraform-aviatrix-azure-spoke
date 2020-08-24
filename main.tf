@@ -1,7 +1,7 @@
 # Create an Azure VNet
 resource "aviatrix_vpc" "default" {
   cloud_type           = 8
-  account_name         = var.azure_account_name
+  account_name         = var.account
   region               = var.region
   name                 = var.spoke_name
   cidr                 = var.cidr
@@ -11,7 +11,7 @@ resource "aviatrix_vpc" "default" {
 resource "aviatrix_spoke_gateway" "single" {
   count              = var.ha_gw ? 0 : 1
   cloud_type         = 8
-  account_name       = var.azure_account_name
+  account_name       = var.account
   gw_name            = var.spoke_name
   vpc_id             = aviatrix_vpc.default.vpc_id
   vpc_reg            = var.region
@@ -24,7 +24,7 @@ resource "aviatrix_spoke_gateway" "single" {
 resource "aviatrix_spoke_gateway" "ha" {
   count              = var.ha_gw ? 1 : 0
   cloud_type         = 8
-  account_name       = var.azure_account_name
+  account_name       = var.account
   gw_name            = var.spoke_name
   vpc_id             = aviatrix_vpc.default.vpc_id
   vpc_reg            = var.region
