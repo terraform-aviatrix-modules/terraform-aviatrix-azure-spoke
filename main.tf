@@ -17,7 +17,7 @@ resource "aviatrix_spoke_gateway" "single" {
   vpc_reg            = var.region
   gw_size            = var.instance_size
   subnet             = aviatrix_vpc.default.subnets[0].cidr
-  enable_active_mesh = true
+  enable_active_mesh = var.active_mesh
   transit_gw         = var.transit_gw
 }
 
@@ -32,6 +32,6 @@ resource "aviatrix_spoke_gateway" "ha" {
   ha_gw_size         = var.instance_size
   subnet             = aviatrix_vpc.default.subnets[0].cidr
   ha_subnet          = aviatrix_vpc.default.subnets[1].cidr
-  enable_active_mesh = true
+  enable_active_mesh = var.active_mesh
   transit_gw         = var.transit_gw
 }
