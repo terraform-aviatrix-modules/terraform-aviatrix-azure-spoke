@@ -41,6 +41,7 @@ key | default | value
 :---|:---|:---
 instance_size | Standard_B1ms | The size of the Aviatrix spoke gateways
 ha_gw | true | Set to false if you only want to deploy a single Aviatrix spoke gateway
+active_mesh | true | Set to false to disable active_mesh
 
 ### Outputs
 This module will return the following outputs:
