@@ -24,6 +24,11 @@ variable "ha_gw" {
   default = true
 }
 
+variable "active_mesh" {
+  type    = bool
+  default = true
+}
+
 variable "transit_gw" {
   type = string
 }
