@@ -4,8 +4,11 @@
 This module deploys a very simple spoke VNET.
 
 ### Diagram
-\<Provide a diagram of the high level constructs thet will be created by this module>
-<img src="<IMG URL>"  height="250">
+<img src="https://github.com/terraform-aviatrix-modules/terraform-aviatrix-azure-spoke/blob/master/img/azure-ha.png?raw=true" height="250">
+
+with ha_gw set to false, the following will be deployed:
+
+<img src="https://github.com/terraform-aviatrix-modules/terraform-aviatrix-azure-spoke/blob/master/img/azure-single.png?raw=true" height="250">
 
 ### Usage Example
 ```
