@@ -14,7 +14,7 @@ with ha_gw set to false, the following will be deployed:
 ```
 module "spoke_azure_1" {
   source  = "terraform-aviatrix-modules/azure-spoke/aviatrix"
-  version = "1.0.0"
+  version = "1.0.1"
 
   name = "my-spoke"
   cidr = "10.1.0.0/20"
