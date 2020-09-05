@@ -32,7 +32,7 @@ resource "aviatrix_spoke_gateway" "ha" {
   gw_size            = var.instance_size
   ha_gw_size         = var.instance_size
   subnet             = var.insane_mode ? cidrsubnet(aviatrix_vpc.default.cidr, 3, 6) : aviatrix_vpc.default.subnets[0].cidr
-  ha_subnet          = var.insane_mode ? cidrsubnet(aviatrix_vpc.default.cidr, 3, 7) : aviatrix_vpc.default.subnets[1].cidr
+  ha_subnet          = var.insane_mode ? cidrsubnet(aviatrix_vpc.default.cidr, 3, 7) : aviatrix_vpc.default.subnets[0].cidr
   insane_mode        = var.insane_mode
   enable_active_mesh = var.active_mesh
   transit_gw         = var.transit_gw
