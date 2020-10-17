@@ -60,10 +60,10 @@ variable "insane_mode" {
 }
 
 locals {
-  lower_name        = replace(lower(var.name), " ", "-")
-  prefix            = var.prefix ? "avx-" : ""
-  suffix            = var.suffix ? "-spoke" : ""
-  name              = "${local.prefix}${local.lower_name}${local.suffix}"
-  subnet            = var.insane_mode ? cidrsubnet(var.cidr, 3, 6) : aviatrix_vpc.default.subnets[0].cidr
-  ha_subnet         = var.insane_mode ? cidrsubnet(var.cidr, 3, 7) : aviatrix_vpc.default.subnets[0].cidr
+  lower_name = replace(lower(var.name), " ", "-")
+  prefix     = var.prefix ? "avx-" : ""
+  suffix     = var.suffix ? "-spoke" : ""
+  name       = "${local.prefix}${local.lower_name}${local.suffix}"
+  subnet     = var.insane_mode ? cidrsubnet(var.cidr, 3, 6) : aviatrix_vpc.default.subnets[0].cidr
+  ha_subnet  = var.insane_mode ? cidrsubnet(var.cidr, 3, 7) : aviatrix_vpc.default.subnets[0].cidr
 }
