@@ -5,5 +5,5 @@ output "vnet" {
 
 output "spoke_gateway" {
   description = "The created Aviatrix spoke gateway as an object with all of it's attributes."
-  value       = var.ha_gw ? aviatrix_spoke_gateway.ha[0] : aviatrix_spoke_gateway.single[0]
+  value       = aviatrix_spoke_gateway.default
 }

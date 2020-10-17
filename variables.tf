@@ -3,6 +3,18 @@ variable "name" {
   type        = string
 }
 
+variable "prefix" {
+  description = "Boolean to determine if name will be prepended with avx-"
+  type        = bool
+  default     = true
+}
+
+variable "suffix" {
+  description = "Boolean to determine if name will be appended with -spoke"
+  type        = bool
+  default     = true
+}
+
 variable "region" {
   description = "The Azure region to deploy this module in"
   type        = string
@@ -45,4 +57,13 @@ variable "insane_mode" {
   description = "Set to true to enable Aviatrix high performance encryption."
   type        = bool
   default     = false
+}
+
+locals {
+  lower_name        = replace(lower(var.name), " ", "-")
+  prefix            = var.prefix ? "avx-" : ""
+  suffix            = var.suffix ? "-spoke" : ""
+  name              = "${local.prefix}${local.lower_name}${local.suffix}"
+  subnet            = var.insane_mode ? cidrsubnet(var.cidr, 3, 6) : aviatrix_vpc.default.subnets[0].cidr
+  ha_subnet         = var.insane_mode ? cidrsubnet(var.cidr, 3, 7) : aviatrix_vpc.default.subnets[0].cidr
 }
