@@ -21,6 +21,11 @@ resource "aviatrix_spoke_gateway" "default" {
   insane_mode                       = var.insane_mode
   enable_active_mesh                = var.active_mesh
   manage_transit_gateway_attachment = false
+  single_az_ha                      = var.single_az_ha
+  single_ip_snat                    = var.single_ip_snat
+  customized_spoke_vpc_routes       = var.customized_spoke_vpc_routes
+  filtered_spoke_vpc_routes         = var.filtered_spoke_vpc_routes
+  included_advertised_spoke_routes  = var.included_advertised_spoke_routes
 }
 
 resource "aviatrix_spoke_transit_attachment" "default" {
