@@ -6,6 +6,7 @@ This module deploys a very simple spoke VNET.
 ### Compatibility
 Module version | Terraform version | Controller version | Terraform provider version
 :--- | :--- | :--- | :---
+v3.0.0 | 0.13 | >=6.2 | >=0.2.17
 v2.0.0 | 0.12 | >=6.2 | >=0.2.17
 v1.1.1 | 0.12 | |
 v1.1.0 | 0.12 | |
