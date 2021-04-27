@@ -101,11 +101,23 @@ variable "included_advertised_spoke_routes" {
   default     = ""
 }
 
+variable "vnet_subnet_pairs" {
+  description = "Number of subnet pairs created in the vnet"
+  type        = number
+  default     = 2
+}
+
+variable "vnet_subnet_size" {
+  description = "Size of each subnet cidr block in bits"
+  type        = number
+  default     = 28
+}
+
 locals {
   lower_name = replace(lower(var.name), " ", "-")
   prefix     = var.prefix ? "avx-" : ""
   suffix     = var.suffix ? "-spoke" : ""
   name       = "${local.prefix}${local.lower_name}${local.suffix}"
-  subnet     = var.insane_mode ? cidrsubnet(var.cidr, 3, 6) : aviatrix_vpc.default.subnets[0].cidr
-  ha_subnet  = var.insane_mode ? cidrsubnet(var.cidr, 3, 7) : aviatrix_vpc.default.subnets[0].cidr
+  subnet     = var.insane_mode ? cidrsubnet(var.cidr, local.newbits, local.netnum - 2) : aviatrix_vpc.default.public_subnets[0].cidr
+  ha_subnet  = var.insane_mode ? cidrsubnet(var.cidr, local.newbits, local.netnum - 1) : aviatrix_vpc.default.public_subnets[0].cidr
 }

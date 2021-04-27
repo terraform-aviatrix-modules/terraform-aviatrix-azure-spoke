@@ -5,7 +5,10 @@ resource "aviatrix_vpc" "default" {
   region               = var.region
   name                 = local.name
   cidr                 = var.cidr
+  aviatrix_transit_vpc = false
   aviatrix_firenet_vpc = false
+  num_of_subnet_pairs  = var.vpc_subnet_pairs
+  subnet_size          = var.vpc_subnet_size  
 }
 
 resource "aviatrix_spoke_gateway" "default" {
