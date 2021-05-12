@@ -6,13 +6,9 @@ This module deploys a very simple spoke VNET.
 ### Compatibility
 Module version | Terraform version | Controller version | Terraform provider version
 :--- | :--- | :--- | :---
+v3.0.2 | 0.13 | >=6.2 | >=0.2.17
+v3.0.1 | 0.13 | >=6.2 | >=0.2.17 #Withdrawn due to issue
 v3.0.0 | 0.13 | >=6.2 | >=0.2.17
-v2.0.0 | 0.12 | >=6.2 | >=0.2.17
-v1.1.1 | 0.12 | |
-v1.1.0 | 0.12 | |
-v1.0.2 | 0.12 | |
-v1.0.1 | 0.12 | |
-v1.0.0 | 0.12 | |
 
 ### Diagram
 <img src="https://github.com/terraform-aviatrix-modules/terraform-aviatrix-azure-spoke/blob/master/img/azure-ha.png?raw=true" height="250">
@@ -25,7 +21,7 @@ with ha_gw set to false, the following will be deployed:
 ```
 module "spoke_azure_1" {
   source  = "terraform-aviatrix-modules/azure-spoke/aviatrix"
-  version = "2.0.0"
+  version = "3.0.2"
 
   name = "my-spoke"
   cidr = "10.1.0.0/20"
