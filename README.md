@@ -62,6 +62,9 @@ filtered_spoke_vpc_routes | | A list of comma separated CIDRs to be filtered fr
 included_advertised_spoke_routes | | A list of comma separated CIDRs to be advertised to on-prem as Included CIDR List. When configured, it will replace all advertised routes from this VNET. Example: 10.4.0.0/116,10.5.0.0/16
 vnet_num_subnets | 2 | Number of Public/Private subnet pairs created in the VNET.
 vnet_subnet_size | 28 | Size of the Public/Private subnets in the VNET.
+az_support | true | Set to false if the Azure region does not support Availability Zones.
+az1 | az-1 | AZ Zone to be used for Spoke GW
+az2 | az-2 | AZ Zone to be used for HA Spoke GW
 
 ### Outputs
 This module will return the following outputs:
