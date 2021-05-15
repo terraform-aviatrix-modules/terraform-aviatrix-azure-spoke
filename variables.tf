@@ -113,6 +113,24 @@ variable "vnet_subnet_size" {
   default     = 28
 }
 
+variable "az_support" {
+  description = "Set to true if the Azure region supports AZ's"
+  type        = bool
+  default     = true
+}
+
+variable "az1" {
+  description = "AZ Zone to be used for GW deployment."
+  type        = string
+  default     = "az-1"
+}
+
+variable "az2" {
+  description = "AZ Zone to be used for HAGW deployment."
+  type        = string
+  default     = "az-2"
+}
+
 locals {
   lower_name = replace(lower(var.name), " ", "-")
   prefix     = var.prefix ? "avx-" : ""
