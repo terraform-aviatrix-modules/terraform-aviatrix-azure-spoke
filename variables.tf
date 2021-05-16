@@ -131,6 +131,60 @@ variable "az2" {
   default     = "az-2"
 }
 
+variable "resource_group" {
+  description = "Provide the name of an existing resource group."
+  type        = string
+  default     = null
+}
+
+variable "tunnel_detection_time" {
+  description = "The IPsec tunnel down detection time for the Spoke Gateway in seconds. Must be a number in the range [20-600]."
+  type        = number
+  default     = null
+}
+
+variable "tags" {
+  description = "Map of tags to assign to the gateway."
+  type        = map(string)
+  default     = null
+}
+
+variable "use_existing_vnet" {
+  description = "Set to true to use existing VNET."
+  type        = bool
+  default     = false
+}
+
+variable "vnet_id" {
+  description = "vnet ID, for using an existing vnet."
+  type        = string
+  default     = ""
+}
+
+variable "gw_subnet" {
+  description = "Subnet CIDR, for using an existing vnet. Required when use_existing_vnet is true."
+  type        = string
+  default     = ""
+}
+
+variable "private_vpc_default_route" {
+  description = "Program default route in VNET private route table."
+  type        = bool
+  default     = false
+}
+
+variable "skip_public_route_table_update" {
+  description = "Skip programming VNET public route table."
+  type        = bool
+  default     = false
+}
+
+variable "auto_advertise_s2c_cidrs" {
+  description = "Auto Advertise Spoke Site2Cloud CIDRs."
+  type        = bool
+  default     = false
+}
+
 locals {
   lower_name = replace(lower(var.name), " ", "-")
   prefix     = var.prefix ? "avx-" : ""
@@ -139,6 +193,6 @@ locals {
   cidrbits   = tonumber(split("/", var.cidr)[1])
   newbits    = 26 - local.cidrbits
   netnum     = pow(2, local.newbits)
-  subnet     = var.insane_mode ? cidrsubnet(var.cidr, local.newbits, local.netnum - 2) : aviatrix_vpc.default.public_subnets[0].cidr
-  ha_subnet  = var.insane_mode ? cidrsubnet(var.cidr, local.newbits, local.netnum - 1) : aviatrix_vpc.default.public_subnets[0].cidr
+  subnet     = var.use_existing_vnet ? var.gw_subnet : (var.insane_mode ? cidrsubnet(var.cidr, local.newbits, local.netnum - 2) : aviatrix_vpc.default.public_subnets[0].cidr)
+  ha_subnet  = var.use_existing_vnet ? var.gw_subnet : (var.insane_mode ? cidrsubnet(var.cidr, local.newbits, local.netnum - 1) : aviatrix_vpc.default.public_subnets[0].cidr)
 }
