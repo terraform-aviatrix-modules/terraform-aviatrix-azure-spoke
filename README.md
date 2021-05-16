@@ -69,7 +69,7 @@ resource_group | null | Provide the name of an existing resource group.
 tunnel_detection_time | null | The IPsec tunnel down detection time for the Spoke Gateway in seconds. Must be a number in the range [20-600]. Default is 60.
 tags | null | Map of tags to assign to the gateway.
 use_existing_vnet | false | Set to true to use an existing VNET in stead of having this module create one.
-vnet_id | | VNET ID, for using an existing VNET. Format is: "\<resource_group_name\>:<\vnet_name\>"
+vnet_id | | VNET ID, for using an existing VNET. Format is: "<\vnet_name\>:\<resource_group_name\>"
 gw_subnet | | Subnet CIDR, for using an existing VNET. Required when use_existing_vnet is enabled. Make sure this is a public subnet.
 private_vpc_default_route | false | Program default route in VNET private route table.
 skip_public_route_table_update | false | Skip programming VNET public route table.
