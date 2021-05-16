@@ -192,7 +192,7 @@ locals {
   suffix     = var.suffix ? "-spoke" : ""
   cidr       = var.use_existing_vnet ? "10.0.0.0/20" : var.cidr #Set dummy if existing VNET is used.
   name       = "${local.prefix}${local.lower_name}${local.suffix}"
-  cidrbits   = tonumber(split("/", var.local)[1])
+  cidrbits   = tonumber(split("/", local.cidr)[1])
   newbits    = 26 - local.cidrbits
   netnum     = pow(2, local.newbits)
   subnet     = var.use_existing_vnet ? var.gw_subnet : (var.insane_mode ? cidrsubnet(local.cidr, local.newbits, local.netnum - 2) : aviatrix_vpc.default[0].public_subnets[0].cidr)
