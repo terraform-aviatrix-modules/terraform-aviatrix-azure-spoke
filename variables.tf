@@ -23,6 +23,7 @@ variable "region" {
 variable "cidr" {
   description = "The CIDR range to be used for the VNET"
   type        = string
+  default     = ""
 }
 
 variable "account" {

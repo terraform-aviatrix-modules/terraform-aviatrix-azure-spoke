@@ -39,7 +39,7 @@ key | value
 :--- | :---
 name | avx-\<name\>-spoke
 region | AWS region to deploy this VNET in
-cidr | What ip CIDR to use for this VNET
+cidr | What ip CIDR to use for this VNET (Not required when use_existing_vnet is true)
 account | The account name as known by the Aviatrix controller
 transit_gw | The name of the transit gateway we want to attach this spoke to. Not required when attached is set to false.
 
