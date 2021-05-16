@@ -39,9 +39,9 @@ key | value
 :--- | :---
 name | avx-\<name\>-spoke
 region | AWS region to deploy this VNET in
-cidr | What ip CIDR to use for this VNET
+cidr | What ip CIDR to use for this VNET (Not required when use_existing_vnet is true)
 account | The account name as known by the Aviatrix controller
-transit_gw | The name of the transit gateway we want to attach this spoke to
+transit_gw | The name of the transit gateway we want to attach this spoke to. Not required when attached is set to false.
 
 The following variables are optional:
 
@@ -65,11 +65,20 @@ vnet_subnet_size | 28 | Size of the Public/Private subnets in the VNET.
 az_support | true | Set to false if the Azure region does not support Availability Zones.
 az1 | az-1 | AZ Zone to be used for Spoke GW
 az2 | az-2 | AZ Zone to be used for HA Spoke GW
+resource_group | null | Provide the name of an existing resource group.
+tunnel_detection_time | null | The IPsec tunnel down detection time for the Spoke Gateway in seconds. Must be a number in the range [20-600]. Default is 60.
+tags | null | Map of tags to assign to the gateway.
+use_existing_vnet | false | Set to true to use an existing VNET in stead of having this module create one.
+vnet_id | | VNET ID, for using an existing VNET. Format is: "<\vnet_name\>:\<resource_group_name\>"
+gw_subnet | | Subnet CIDR, for using an existing VNET. Required when use_existing_vnet is enabled. Make sure this is a public subnet.
+private_vpc_default_route | false | Program default route in VNET private route table.
+skip_public_route_table_update | false | Skip programming VNET public route table.
+auto_advertise_s2c_cidrs | false | Auto Advertise Spoke Site2Cloud CIDRs.
 
 ### Outputs
 This module will return the following outputs:
 
 key | description
 :---|:---
-vnet | The created VNET as an object with all of it's attributes. This was created using the aviatrix_vpc resource.
+vnet | The created VNET as an object with all of it's attributes (when use_existing_vnet is false). This was created using the aviatrix_vpc resource.
 spoke_gateway | The created Aviatrix spoke gateway as an object with all of it's attributes.

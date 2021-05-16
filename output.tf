@@ -1,6 +1,6 @@
 output "vnet" {
   description = "The created net as an object with all of it's attributes. This was created using the aviatrix_vpc resource."
-  value       = aviatrix_vpc.default
+  value       = var.use_existing_vnet ? null : aviatrix_vpc.default[0]
 }
 
 output "spoke_gateway" {
