@@ -62,7 +62,7 @@ single_ip_snat | false | Specify whether to enable Source NAT feature in single
 customized_spoke_vpc_routes | | A list of comma separated CIDRs to be customized for the spoke VNET routes. When configured, it will replace all learned routes in VNET routing tables, including RFC1918 and non-RFC1918 CIDRs. Example: 10.0.0.0/116,10.2.0.0/16
 filtered_spoke_vpc_routes | | A list of comma separated CIDRs to be filtered from the spoke VNET route table. When configured, filtering CIDR(s) or it’s subnet will be deleted from VNET routing tables as well as from spoke gateway’s routing table. Example: 10.2.0.0/116,10.3.0.0/16
 included_advertised_spoke_routes | | A list of comma separated CIDRs to be advertised to on-prem as Included CIDR List. When configured, it will replace all advertised routes from this VNET. Example: 10.4.0.0/116,10.5.0.0/16
-vnet_num_subnets | 2 | Number of Public/Private subnet pairs created in the VNET.
+vnet_subnet_pairs | 2 | Number of Public/Private subnet pairs created in the VNET.
 vnet_subnet_size | 28 | Size of the Public/Private subnets in the VNET.
 az_support | true | Set to false if the Azure region does not support Availability Zones.
 az1 | az-1 | AZ Zone to be used for Spoke GW
