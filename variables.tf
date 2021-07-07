@@ -186,6 +186,12 @@ variable "auto_advertise_s2c_cidrs" {
   default     = false
 }
 
+variable "china" {
+  description = "Set to true if deploying this module in Azure China."
+  type        = bool
+  default     = false
+}
+
 locals {
   lower_name = replace(lower(var.name), " ", "-")
   prefix     = var.prefix ? "avx-" : ""
@@ -197,4 +203,5 @@ locals {
   netnum     = pow(2, local.newbits)
   subnet     = var.use_existing_vnet ? var.gw_subnet : (var.insane_mode ? cidrsubnet(local.cidr, local.newbits, local.netnum - 2) : aviatrix_vpc.default[0].public_subnets[0].cidr)
   ha_subnet  = var.use_existing_vnet ? var.gw_subnet : (var.insane_mode ? cidrsubnet(local.cidr, local.newbits, local.netnum - 1) : aviatrix_vpc.default[0].public_subnets[0].cidr)
+  cloud_type = var.china ? 2048 : 1
 }
