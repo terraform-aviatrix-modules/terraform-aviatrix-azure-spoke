@@ -61,6 +61,18 @@ variable "transit_gw_egress" {
   default     = ""
 }
 
+variable "transit_gw_route_tables" {
+  description = "Route tables to propagate routes to for transit_gw attachment"
+  type        = list(string)
+  default     = []
+}
+
+variable "transit_gw_egress_route_tables" {
+  description = "Route tables to propagate routes to for transit_gw2 attachment"
+  type        = list(string)
+  default     = []
+}
+
 variable "insane_mode" {
   description = "Set to true to enable Aviatrix high performance encryption."
   type        = bool
