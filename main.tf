@@ -1,7 +1,7 @@
 # Create an Azure VNet
 resource "aviatrix_vpc" "default" {
   count                = var.use_existing_vnet ? 0 : 1
-  cloud_type           = 8
+  cloud_type           = local.cloud_type
   account_name         = var.account
   region               = var.region
   name                 = local.name
@@ -14,7 +14,7 @@ resource "aviatrix_vpc" "default" {
 }
 
 resource "aviatrix_spoke_gateway" "default" {
-  cloud_type                            = 8
+  cloud_type                            = local.cloud_type
   account_name                          = var.account
   gw_name                               = local.name
   vpc_id                                = var.use_existing_vnet ? var.vnet_id : aviatrix_vpc.default[0].vpc_id
@@ -44,6 +44,14 @@ resource "aviatrix_spoke_transit_attachment" "default" {
   count           = var.attached ? 1 : 0
   spoke_gw_name   = aviatrix_spoke_gateway.default.gw_name
   transit_gw_name = var.transit_gw
+  route_tables    = var.transit_gw_route_tables
+}
+
+resource "aviatrix_spoke_transit_attachment" "transit_gw_egress" {
+  count           = length(var.transit_gw_egress) > 0 ? (var.attached_gw_egress ? 1 : 0) : 0
+  spoke_gw_name   = aviatrix_spoke_gateway.default.gw_name
+  transit_gw_name = var.transit_gw_egress
+  route_tables    = var.transit_gw_egress_route_tables
 }
 
 resource "aviatrix_segmentation_security_domain_association" "default" {
@@ -52,4 +60,11 @@ resource "aviatrix_segmentation_security_domain_association" "default" {
   security_domain_name = var.security_domain
   attachment_name      = aviatrix_spoke_gateway.default.gw_name
   depends_on           = [aviatrix_spoke_transit_attachment.default] #Let's make sure this cannot create a race condition
+}
+
+resource "aviatrix_transit_firenet_policy" "default" {
+  count                        = var.inspection ? (var.attached ? 1 : 0) : 0
+  transit_firenet_gateway_name = var.transit_gw
+  inspected_resource_name      = "SPOKE:${aviatrix_spoke_gateway.default.gw_name}"
+  depends_on                   = [aviatrix_spoke_transit_attachment.default] #Let's make sure this cannot create a race condition
 }

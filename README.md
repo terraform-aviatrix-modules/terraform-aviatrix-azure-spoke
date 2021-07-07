@@ -6,6 +6,7 @@ This module deploys a very simple spoke VNET.
 ### Compatibility
 Module version | Terraform version | Controller version | Terraform provider version
 :--- | :--- | :--- | :---
+v4.0.1 | 0.13 + 0.14 | >=6.4 | >=0.2.19
 v4.0.0 | 0.13 + 0.14 | >=6.4 | >=0.2.19
 v3.0.3 | 0.13 | >=6.3 | >=0.2.18
 v3.0.2 | 0.13 | >=6.2 | >=0.2.17
@@ -23,7 +24,7 @@ with ha_gw set to false, the following will be deployed:
 ```
 module "spoke_azure_1" {
   source  = "terraform-aviatrix-modules/azure-spoke/aviatrix"
-  version = "4.0.0"
+  version = "4.0.1"
 
   name = "my-spoke"
   cidr = "10.1.0.0/20"
@@ -76,6 +77,12 @@ gw_subnet | | Subnet CIDR, for using an existing VNET. Required when use_existin
 private_vpc_default_route | false | Program default route in VNET private route table.
 skip_public_route_table_update | false | Skip programming VNET public route table.
 auto_advertise_s2c_cidrs | false | Auto Advertise Spoke Site2Cloud CIDRs.
+china | false | Set to true when deploying this module in Azure China
+transit_gw_egress | | Add secondary transit to attach spoke to (e.g. for dual transit firenet). When segmentation is used, transit_gw MUST be used for east/west transit.
+attached_gw_egress | true | Set to false if you don't want to attach spoke to transit_gw_egress.
+transit_gw_route_tables | [] | A list of route tables to propagate routes to for transit_gw attachment.
+transit_gw_egress_route_tables | [] | A list of route tables to propagate routes to for transit_gw_egress attachment.
+inspection | false | Set to true to enable east/west Firenet inspection. Only valid when transit_gw is East/West transit Firenet
 
 ### Outputs
 This module will return the following outputs:

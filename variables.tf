@@ -52,6 +52,25 @@ variable "active_mesh" {
 variable "transit_gw" {
   description = "Transit gateway to attach spoke to"
   type        = string
+  default     = ""
+}
+
+variable "transit_gw_egress" {
+  description = "Name of the transit gateway to attach this spoke to"
+  type        = string
+  default     = ""
+}
+
+variable "transit_gw_route_tables" {
+  description = "Route tables to propagate routes to for transit_gw attachment"
+  type        = list(string)
+  default     = []
+}
+
+variable "transit_gw_egress_route_tables" {
+  description = "Route tables to propagate routes to for transit_gw2 attachment"
+  type        = list(string)
+  default     = []
 }
 
 variable "insane_mode" {
@@ -62,6 +81,12 @@ variable "insane_mode" {
 
 variable "attached" {
   description = "Set to false if you don't want to attach spoke to transit."
+  type        = bool
+  default     = true
+}
+
+variable "attached_gw_egress" {
+  description = "Set to false if you don't want to attach spoke to transit_gw_egress."
   type        = bool
   default     = true
 }
@@ -186,6 +211,18 @@ variable "auto_advertise_s2c_cidrs" {
   default     = false
 }
 
+variable "china" {
+  description = "Set to true if deploying this module in Azure China."
+  type        = bool
+  default     = false
+}
+
+variable "inspection" {
+  description = "Set to true to enable east/west Firenet inspection. Only valid when transit_gw is East/West transit Firenet"
+  type        = bool
+  default     = false
+}
+
 locals {
   lower_name = replace(lower(var.name), " ", "-")
   prefix     = var.prefix ? "avx-" : ""
@@ -197,4 +234,5 @@ locals {
   netnum     = pow(2, local.newbits)
   subnet     = var.use_existing_vnet ? var.gw_subnet : (var.insane_mode ? cidrsubnet(local.cidr, local.newbits, local.netnum - 2) : aviatrix_vpc.default[0].public_subnets[0].cidr)
   ha_subnet  = var.use_existing_vnet ? var.gw_subnet : (var.insane_mode ? cidrsubnet(local.cidr, local.newbits, local.netnum - 1) : aviatrix_vpc.default[0].public_subnets[0].cidr)
+  cloud_type = var.china ? 2048 : 8
 }
