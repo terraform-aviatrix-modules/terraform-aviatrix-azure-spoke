@@ -62,3 +62,9 @@ resource "aviatrix_segmentation_security_domain_association" "default" {
   depends_on           = [aviatrix_spoke_transit_attachment.default] #Let's make sure this cannot create a race condition
 }
 
+resource "aviatrix_transit_firenet_policy" "default" {
+  count                        = var.inspection ? (var.attached ? 1 : 0) : 0
+  transit_firenet_gateway_name = var.transit_gw
+  inspected_resource_name      = "SPOKE:${aviatrix_spoke_gateway.default.gw_name}"
+  depends_on                   = [aviatrix_spoke_transit_attachment.default] #Let's make sure this cannot create a race condition
+}

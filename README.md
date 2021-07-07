@@ -82,6 +82,7 @@ transit_gw_egress | | Add secondary transit to attach spoke to (e.g. for dual tr
 attached_gw_egress | true | Set to false if you don't want to attach spoke to transit_gw_egress.
 transit_gw_route_tables | [] | A list of route tables to propagate routes to for transit_gw attachment.
 transit_gw_egress_route_tables | [] | A list of route tables to propagate routes to for transit_gw_egress attachment.
+inspection | false | Set to true to enable east/west Firenet inspection. Only valid when transit_gw is East/West transit Firenet
 
 ### Outputs
 This module will return the following outputs:

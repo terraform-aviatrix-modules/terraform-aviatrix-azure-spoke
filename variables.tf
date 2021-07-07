@@ -217,6 +217,12 @@ variable "china" {
   default     = false
 }
 
+variable "inspection" {
+  description = "Set to true to enable east/west Firenet inspection. Only valid when transit_gw is East/West transit Firenet"
+  type        = bool
+  default     = false
+}
+
 locals {
   lower_name = replace(lower(var.name), " ", "-")
   prefix     = var.prefix ? "avx-" : ""
