@@ -52,6 +52,13 @@ variable "active_mesh" {
 variable "transit_gw" {
   description = "Transit gateway to attach spoke to"
   type        = string
+  default     = ""
+}
+
+variable "transit_gw_egress" {
+  description = "Name of the transit gateway to attach this spoke to"
+  type        = string
+  default     = ""
 }
 
 variable "insane_mode" {
@@ -62,6 +69,12 @@ variable "insane_mode" {
 
 variable "attached" {
   description = "Set to false if you don't want to attach spoke to transit."
+  type        = bool
+  default     = true
+}
+
+variable "attached_gw_egress" {
+  description = "Set to false if you don't want to attach spoke to transit_gw_egress."
   type        = bool
   default     = true
 }

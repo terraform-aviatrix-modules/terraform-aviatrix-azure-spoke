@@ -46,6 +46,12 @@ resource "aviatrix_spoke_transit_attachment" "default" {
   transit_gw_name = var.transit_gw
 }
 
+resource "aviatrix_spoke_transit_attachment" "transit_gw_egress" {
+  count           = length(var.transit_gw_egress) > 0 ? (var.attached_gw_egress ? 1 : 0) : 0
+  spoke_gw_name   = aviatrix_spoke_gateway.default.gw_name
+  transit_gw_name = var.transit_gw_egress
+}
+
 resource "aviatrix_segmentation_security_domain_association" "default" {
   count                = var.attached ? (length(var.security_domain) > 0 ? 1 : 0) : 0 #Only create resource when attached and security_domain is set.
   transit_gateway_name = var.transit_gw
@@ -53,3 +59,4 @@ resource "aviatrix_segmentation_security_domain_association" "default" {
   attachment_name      = aviatrix_spoke_gateway.default.gw_name
   depends_on           = [aviatrix_spoke_transit_attachment.default] #Let's make sure this cannot create a race condition
 }
+

@@ -78,6 +78,8 @@ private_vpc_default_route | false | Program default route in VNET private route 
 skip_public_route_table_update | false | Skip programming VNET public route table.
 auto_advertise_s2c_cidrs | false | Auto Advertise Spoke Site2Cloud CIDRs.
 china | false | Set to true when deploying this module in Azure China
+transit_gw_egress | | Add secondary transit to attach spoke to (e.g. for dual transit firenet). When segmentation is used, transit_gw MUST be used for east/west transit.
+attached_gw_egress | true | Set to false if you don't want to attach spoke to transit_gw_egress.
 
 ### Outputs
 This module will return the following outputs:
