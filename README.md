@@ -89,5 +89,6 @@ This module will return the following outputs:
 
 key | description
 :---|:---
-vnet | The created VNET as an object with all of it's attributes (when use_existing_vnet is false). This was created using the aviatrix_vpc resource.
-spoke_gateway | The created Aviatrix spoke gateway as an object with all of it's attributes.
+[vnet](https://registry.terraform.io/providers/AviatrixSystems/aviatrix/latest/docs/resources/aviatrix_vpc) | The created VNET as an object with all of it's attributes (when use_existing_vnet is false). This was created using the aviatrix_vpc resource.
+[spoke_gateway](https://registry.terraform.io/providers/AviatrixSystems/aviatrix/latest/docs/resources/aviatrix_spoke_gateway) | The created Aviatrix spoke gateway as an object with all of it's attributes.
+
