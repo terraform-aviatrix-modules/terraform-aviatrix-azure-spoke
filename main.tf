@@ -24,7 +24,6 @@ resource "aviatrix_spoke_gateway" "default" {
   subnet                                = local.subnet
   ha_subnet                             = var.ha_gw ? local.ha_subnet : null
   insane_mode                           = var.insane_mode
-  enable_active_mesh                    = var.active_mesh
   manage_transit_gateway_attachment     = false
   single_az_ha                          = var.single_az_ha
   single_ip_snat                        = var.single_ip_snat

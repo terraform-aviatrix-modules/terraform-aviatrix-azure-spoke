@@ -43,12 +43,6 @@ variable "ha_gw" {
   default     = true
 }
 
-variable "active_mesh" {
-  description = "Enables Aviatrix active mesh"
-  type        = bool
-  default     = true
-}
-
 variable "transit_gw" {
   description = "Transit gateway to attach spoke to"
   type        = string

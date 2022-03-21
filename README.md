@@ -11,6 +11,7 @@ This module deploys a very simple spoke VNET.
 ### Compatibility
 Module version | Terraform version | Controller version | Terraform provider version
 :--- | :--- | :--- | :---
+v9.9.9 | 0.13, 0.14, 0.15 | >=6.4 | 2.21.1
 v4.0.1 | 0.13 + 0.14 | >=6.4 | >=0.2.19
 v4.0.0 | 0.13 + 0.14 | >=6.4 | >=0.2.19
 v3.0.3 | 0.13 | >=6.3 | >=0.2.18
@@ -57,7 +58,6 @@ key | default | value
 :---|:---|:---
 instance_size | Standard_B1ms | The size of the Aviatrix spoke gateways. **Insane mode requires a minimum Standard_D3_v2 instance size**
 ha_gw | true | Set to false if you only want to deploy a single Aviatrix spoke gateway
-active_mesh | true | Set to false to disable active_mesh
 insane_mode | false | Set to true to enable Aviatrix insane mode high-performance encryption
 prefix | true | Boolean to enable prefix name with avx-
 suffix | true | Boolean to enable suffix name with -spoke
